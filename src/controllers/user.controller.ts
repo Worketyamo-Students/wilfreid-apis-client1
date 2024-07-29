@@ -10,7 +10,17 @@
     * - Author          : Hp
     * - Modification    : 
 **/
+import  PrismaClient  from "@prisma/client";
+import { HttpCode } from "../core/constants";
+import  Chalk  from "chalk";
 const controllerUser = {
-
+ getallUser : async(req:Request,res:Response)=>{
+    try{
+const user = await Prisma.user.finfMany();
+res.send(user).status(HttpCode.OK)
+    }catch (error) {
+        console.log(chalk.red(error))
+    }
+ }
 }
 export default controllerUser;
